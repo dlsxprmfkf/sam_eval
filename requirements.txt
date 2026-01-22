@@ -4,21 +4,33 @@
 #    conda create -n sam_eval python=3.9
 #    conda activate sam_eval
 #
-# 2. Install PyTorch first (with CUDA 12.1)
+# 2. Install PyTorch first (CUDA 12.1 wheel)
 #    pip install torch==2.4.1 torchvision==0.19.1 \
 #      --index-url https://download.pytorch.org/whl/cu121
-#
+
 # 3. Install remaining dependencies
 #    pip install -r requirements.txt
+
+# 4. Install Detectron2 separately (after requirements)
+#    pip install --no-build-isolation \
+#      detectron2 @ git+https://github.com/facebookresearch/detectron2.git@fd27788985af0f4ca800bca563acdb700bb890e2
+
+# 5. Install Detrex separately
+#    pip install --no-build-isolation \
+#      detrex @ git+https://github.com/IDEA-Research/detrex.git@e244e6c3da3e84566728c52c21fb061d23ce0e2f
 #
 # ===========================
+
+# pytorch
+torch==2.4.1
+torchvision==0.19.1
 
 # core
 numpy==1.26.4
 scipy==1.13.1
 
-# vision / detection
-opencv-python==4.12.0.88
+# vision / detection utils
+opencv-python==4.8.1.78
 pycocotools==2.0.11
 lvis==0.5.3
 fvcore==0.1.5.post20221221
@@ -26,14 +38,13 @@ iopath==0.1.9
 yacs==0.1.8
 timm==1.0.24
 
-# meta repos (require torch preinstalled)
-detectron2 @ git+https://github.com/facebookresearch/detectron2.git@fd27788985af0f4ca800bca563acdb700bb890e2
-detrex @ git+https://github.com/IDEA-Research/detrex.git@e244e6c3da3e84566728c52c21fb061d23ce0e2f
+# meta repos (torch required beforehand)
 segment_anything @ git+https://github.com/facebookresearch/segment-anything.git@dca509fe793f601edb92606367a655c15ac00fdf
 
 # utils
 einops==0.8.1
 tqdm==4.67.1
 submitit==1.5.4
-termcolor==3.3.0
+termcolor==3.1.0
 PyYAML==6.0.3
+

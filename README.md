@@ -30,13 +30,23 @@ sam_eval/
 conda create -n sam_eval python=3.9
 conda activate sam_eval
 
-# 2. Install PyTorch (CUDA 12.1)
+# 2. Install PyTorch first (CUDA 12.1 wheel)
 pip install torch==2.4.1 torchvision==0.19.1 \
   --index-url https://download.pytorch.org/whl/cu121
 
 # 3. Install dependencies
 pip install -r requirements.txt
+
+# 4. Install Detectron2 separately (with --no-build-isolation flag)
+pip install --no-build-isolation \
+  detectron2 @ git+https://github.com/facebookresearch/detectron2.git@fd27788985af0f4ca800bca563acdb700bb890e2
+
+# 5. Install Detrex separately (with --no-build-isolation flag)
+pip install --no-build-isolation \
+  detrex @ git+https://github.com/IDEA-Research/detrex.git@e244e6c3da3e84566728c52c21fb061d23ce0e2f
 ```
+
+**Note:** Install PyTorch before `pip install -r requirements.txt` to avoid build issues with meta repos.
 
 ## Prompt Generation
 
