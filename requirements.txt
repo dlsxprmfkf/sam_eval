@@ -21,10 +21,6 @@
 #
 # ===========================
 
-# pytorch
-torch==2.4.1
-torchvision==0.19.1
-
 # core
 numpy==1.26.4
 scipy==1.13.1
@@ -38,13 +34,11 @@ iopath==0.1.9
 yacs==0.1.8
 timm==1.0.24
 
-# meta repos (torch required beforehand)
-segment_anything @ git+https://github.com/facebookresearch/segment-anything.git@dca509fe793f601edb92606367a655c15ac00fdf
-
 # utils
 einops==0.8.1
 tqdm==4.67.1
 submitit==1.5.4
 termcolor==3.1.0
 PyYAML==6.0.3
+
 
