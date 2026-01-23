@@ -5,7 +5,7 @@
 # ==============================================================================
 export PYTHONPATH=$(pwd):$PYTHONPATH
 export CUDA_LAUNCH_BLOCKING=1
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=2
 
 # ==============================================================================
 # TEST CONFIGURATION LIST

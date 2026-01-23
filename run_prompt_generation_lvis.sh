@@ -12,7 +12,7 @@ PYTHON=/data_cast2/members/jeongmo/miniconda3/envs/sam_eval/bin/python
 OUTPUT_FILE="prompts/prompts_lvis.json"
 IMAGE_DIR="data/val2017_lvis_ver"
 CONFIG_FILE="checkpoints/detector/detectron2_configs/LVIS/cascade_mask_rcnn_vitdet_h_100ep.py"
-WEIGHTS_FILE="checkpoints/detector/detectron2_vitdet_lvis/model_final_11bbb7.pkl"
+WEIGHTS_FILE="checkpoints/detector/model_final_11bbb7.pkl"
 
 # GPU 설정 (요청: GPU 1)
 export CUDA_VISIBLE_DEVICES=1
