@@ -64,7 +64,9 @@ python prepare_dataset.py
 
 This will automatically:
 1. Create directory structure (`data/`, `annotations/`, `checkpoints/`, `prompts/`)
-2. Download COCO and LVIS annotations
+2. Download annotations (minimal)
+  - COCO: `instances_val2017.json`
+  - LVIS: `lvis_v1_val.json`
 3. Download SAM checkpoints (vit_h, vit_l, vit_b) → `checkpoints/sam/`
 4. Download detector checkpoints → `checkpoints/detector/`
   - FocalNet-DINO weights (COCO)
@@ -262,10 +264,8 @@ sam_eval/
 │       ├── (15,000 from train2017)
 │       └── (4,809 from val2017)
 ├── annotations/
-│   ├── instances_train2017.json  # COCO training annotations
-│   ├── instances_val2017.json    # COCO validation annotations
-│   ├── lvis_v1_train.json        # LVIS training annotations
-│   └── lvis_v1_val.json          # LVIS validation annotations (1,203 classes)
+│   ├── instances_val2017.json    # COCO validation annotations (downloaded)
+│   └── lvis_v1_val.json          # LVIS validation annotations (downloaded)
 ├── checkpoints/
 │   ├── sam/
 │   │   ├── sam_vit_h_4b8939.pth  # SAM ViT-H (huge)

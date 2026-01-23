@@ -74,26 +74,18 @@ class DatasetPreparer:
         print(f"  ✓ Extracted to {extract_to.relative_to(self.base_dir)}")
     
     def download_annotations(self):
-        """Download COCO and LVIS annotations."""
-        print("\n[1/5] Downloading Annotations...")
+        """Download only the required annotations (COCO val + LVIS val)."""
+        print("\n[1/5] Downloading Annotations (minimal)...")
         
-        # COCO annotations
-        coco_anno_url = "http://images.cocodataset.org/annotations/annotations_trainval2017.zip"
-        coco_anno_zip = self.annotations_dir / "annotations_trainval2017.zip"
-        self.download_file(coco_anno_url, coco_anno_zip, "COCO annotations")
+        # COCO val2017 annotations only
+        coco_val_url = "https://huggingface.co/datasets/coco/annotations/resolve/main/instances_val2017.json"
+        coco_val_path = self.annotations_dir / "instances_val2017.json"
+        self.download_file(coco_val_url, coco_val_path, "COCO instances_val2017.json")
         
-        if not (self.annotations_dir / "instances_val2017.json").exists():
-            self.extract_zip(coco_anno_zip, self.annotations_dir.parent, "COCO annotations")
-        
-        # LVIS annotations
-        lvis_urls = {
-            "lvis_v1_val.json": "https://dl.fbaipublicfiles.com/LVIS/lvis_v1_val.json",
-            "lvis_v1_train.json": "https://dl.fbaipublicfiles.com/LVIS/lvis_v1_train.json",
-        }
-        
-        for filename, url in lvis_urls.items():
-            dest = self.annotations_dir / filename
-            self.download_file(url, dest, f"LVIS {filename}")
+        # LVIS val annotations only
+        lvis_val_url = "https://dl.fbaipublicfiles.com/LVIS/lvis_v1_val.json"
+        lvis_val_path = self.annotations_dir / "lvis_v1_val.json"
+        self.download_file(lvis_val_url, lvis_val_path, "LVIS lvis_v1_val.json")
     
     def download_sam_checkpoints(self):
         """Download SAM model checkpoints."""
