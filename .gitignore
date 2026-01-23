@@ -1,6 +1,9 @@
 eval_results_pruning/
 annotations/
 checkpoints/
+!checkpoints/detector/
+checkpoints/detector/*
 !checkpoints/detector/detectron2_configs/
+!checkpoints/detector/detectron2_configs/**
 data/
 prompts/

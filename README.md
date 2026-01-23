@@ -67,9 +67,10 @@ This will automatically:
 2. Download COCO and LVIS annotations
 3. Download SAM checkpoints (vit_h, vit_l, vit_b) → `checkpoints/sam/`
 4. Download detector checkpoints → `checkpoints/detector/`
-   - FocalNet-DINO weights (COCO)
-   - ViTDet-H Cascade weights (LVIS)
-   - Note: Config files are already in the repository
+  - FocalNet-DINO weights (COCO)
+  - ViTDet-H Cascade weights (LVIS)
+  - Clone FocalNet-DINO repo (for COCO prompt generation)
+  - Note: ViTDet config files are already in the repository
 5. Download COCO images (train2017 + val2017, ~25GB) → `data/`
 6. Create LVIS validation subset (`val2017_lvis_ver/` with 19,809 images)
 
@@ -273,7 +274,7 @@ sam_eval/
 │   └── detector/
 │       ├── focalnet_large_fl4_o365_finetuned_on_coco.pth  # (downloaded)
 │       ├── model_final_11bbb7.pkl                         # (downloaded)
-│       ├── FocalNet-DINO/        # Optional, for reference
+│       ├── FocalNet-DINO/        # Cloned (ignored by git)
 │       └── detectron2_configs/   # ✓ Tracked in git
 ├── prompts/                      # Generated after running prompt scripts
 │   ├── prompts_coco.json

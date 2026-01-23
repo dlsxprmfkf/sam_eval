@@ -9,6 +9,7 @@ import json
 import shutil
 import urllib.request
 import zipfile
+import subprocess
 from pathlib import Path
 from typing import Set
 import argparse
@@ -122,9 +123,36 @@ class DatasetPreparer:
         vitdet_dest = self.checkpoints_dir / "detector" / "model_final_11bbb7.pkl"
         self.download_file(vitdet_url, vitdet_dest, "ViTDet-H Cascade (LVIS)")
         
+        # FocalNet-DINO repository (for COCO prompt generation)
+        self.ensure_focalnet_repo()
+
         print("\n  ℹ Config files are already included in the repository:")
         print(f"    - FocalNet-DINO: checkpoints/detector/FocalNet-DINO/")
         print(f"    - ViTDet: checkpoints/detector/detectron2_configs/")
+
+    def ensure_focalnet_repo(self):
+        """Clone FocalNet-DINO repo if missing (needed for COCO prompt generation)."""
+        repo_dir = self.checkpoints_dir / "detector" / "FocalNet-DINO"
+        if repo_dir.exists():
+            print("  ⊙ FocalNet-DINO repo already present, skipping clone")
+            return
+
+        repo_dir.parent.mkdir(parents=True, exist_ok=True)
+        repo_url = "https://github.com/clin1223/FocalNet-DINO.git"
+        print("  ⬇ Cloning FocalNet-DINO repo (depth=1)...")
+        try:
+            subprocess.run([
+                "git",
+                "clone",
+                "--depth",
+                "1",
+                repo_url,
+                str(repo_dir),
+            ], check=True)
+            print(f"  ✓ Cloned to {repo_dir.relative_to(self.base_dir)}")
+        except Exception as e:
+            print(f"  ✗ Failed to clone FocalNet-DINO: {e}")
+            print("    Please clone manually if COCO prompt generation is required.")
     
     def download_coco_images(self):
         """Download COCO train2017 and val2017 images."""
